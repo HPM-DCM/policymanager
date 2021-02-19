@@ -1,0 +1,78 @@
+					{% extends "base.html" %}
+					 <!--导航内容-->
+						{% block pagehead %}
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb mb-0">
+                                    <li class="breadcrumb-item"><a href="#">策略数据分析</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">可视化数据</li>
+                                </ol>
+                            </nav>
+                            <h1 class="m-0">策略错误</h1>
+                      
+						{% endblock pagehead %}
+						
+						
+					<!--可视化图-->
+
+
+                       {% block page_content %}
+						<div class="search bar1">
+							<form method="post" action="{{ url_for(policy.policy_visual_error) }}">
+							<div class="cage1"><p>选择日期:</p><select class="form-control" name="date">
+							{% for date in page_date %}
+							<option>{{date}}</option>
+							{% endfor %}
+							</select>
+							</div>
+						</form>
+						</div>
+						<div class="img"><img src="../visval_img/PieChart.jpg"></img></div>
+						<div class="img"><img src="../visval_img/plot.jpg"></img><div>
+					
+					   {% endblock page_content %}
+					<!--导航 -->
+						{% block navtitle %}
+                            <ul class="sidebar-menu">
+                                <div class="sidebar-block p-0">
+                                    <ul class="sidebar-menu">
+                                        <li class="sidebar-menu-item">
+                                            <a class="sidebar-menu-button"  href="{{ url_for('policy_amount_more') }}">
+                                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                                                <span class="sidebar-menu-text">策略分析</span>
+                                               
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-menu-item">
+										<a class="sidebar-menu-button"  href="{{ url_for('policy_stdlib') }}">
+                                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">folder</i>
+                                                <span class="sidebar-menu-text">策略标准库</span>
+                                              
+                                            </a>
+                                            
+										</li>
+                                        <li class="sidebar-menu-item  active open">
+                                           <a class="sidebar-menu-button" data-toggle="collapse" href="#docs_menu">
+                                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">edit</i>
+                                                <span class="sidebar-menu-text">可视化数据</span>
+                                               
+                                            </a>
+                                            <ul class="sidebar-submenu collapse show" id="docs_menu">
+                                                <li class="sidebar-menu-item">
+                                                    <a class="sidebar-menu-button" href="{{ url_for('policy_visual_more') }}">
+                                                        <span class="sidebar-menu-text">策略冗余</span>
+                                                    </a>
+                                                </li>
+                                                <li class="sidebar-menu-item">
+                                                    <a class="sidebar-menu-button" href="{{ url_for('policy_visual_less') }}">
+                                                        <span class="sidebar-menu-text">策略缺失</span>
+                                                    </a>
+                                                </li>
+												<li class="sidebar-menu-item active">
+                                                    <a class="sidebar-menu-button" href="#docs_menu">
+                                                        <span class="sidebar-menu-text">策略错误</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                   {% endblock navtitle %}           

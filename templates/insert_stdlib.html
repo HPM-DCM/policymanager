@@ -1,0 +1,228 @@
+				{% extends "base.html" %}
+						{% block pagehead %}
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb mb-0">
+                                    <li class="breadcrumb-item"><a href="#">策略数据分析</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">策略标准库</li>
+                                </ol>
+                            </nav>
+                            <h1 class="m-0">策略数</h1>
+						{% endblock pagehead %}
+
+
+
+					{% block page_content %}
+					<form>
+					<div class="details">
+						<div class="d-left">
+							<div class="form-group row">
+								  <label class="col-sm-3 control-label" for="ds_host">策略ID:</label>
+								  <div class="col-sm-10">
+									 <input class="form-control input-lg" id="ds_host" type="text"/>
+								  </div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="ds_host">需求地市:</label>
+								<div class="form-son">
+								{% for city in demandcitys %}
+									<div class="form-check  form-check-inline disabled">
+										  <label class="form-check-label">
+											<input type="checkbox" name="demandcity" class="form-check-input" value="">{{ city }}
+										  </label>
+									</div>
+								{% endfor %}
+								</div>
+							</div>
+							<div class="form-group row">
+							   <label for="disabledSelect"  class="col-sm-3 control-label">策略类型:</label>
+							   <div class="col-sm-10">
+								  <select class="form-control">
+									<option value="none" selected disabled hidden></option>
+									<option>差异化服务</option>
+									<option>流量套餐</option>
+									<option>能力开放</option>
+									<option>其他</option>
+									<option>通信保障</option>
+								  </select>
+							   </div>
+							</div>
+							<div class="form-group row">
+								   <label for="disabledSelect"  class="col-sm-3 control-label">承载类型:</label>
+								   <div class="col-sm-10">
+									  <select  class="form-control">
+										<option value="none" selected disabled hidden></option>
+											<option>专载</option>
+											<option>默载</option>
+									  </select>
+								   </div>
+							</div>
+							<div class="form-group row">
+							   <label for="disabledSelect"  margin-left="15px" class="col-sm-3 control-label">速率:</label>
+							   <textarea class="form-control" rows="5" id="comment"></textarea>
+							</div>
+							<div class="form-group row">
+							    <label for="disabledSelect"  class="col-sm-3 control-label">策略状态:</label>
+							    <div class="col-sm-10">
+								    <select  class="form-control">
+										<option>已上线</option>
+										<option>已下线</option>
+								    </select>
+							   </div>
+							</div>
+							<div class="form-group">
+								<label for="dtp_input2" class="col-md-2 control-label">上线时间</label>
+								<div class="input-group date form_date col-md-5" data-date="" data-date-format="" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+									<input class="form-control" size="10" type="text" value="" readonly>
+								   
+									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								</div>
+								<input type="hidden" id="dtp_input2" value="" /><br/>
+							</div>
+						</div>
+						<div class="d-right">
+							<div class="form-group row">
+								  <label class="col-sm-3 control-label" for="ds_host">策略名称:</label>
+								  <div class="col-sm-10"><input class="form-control input-lg" id="ds_host" type="text"/>
+								  </div>
+							 </div>
+							 <div class="form-group">
+								<label class="col-sm-3 control-label" for="ds_host">上线地市:</label>
+								<div class="form-son">
+								{% for city in onlinecitys %}
+									<div class="form-check  form-check-inline disabled">
+										  <label class="form-check-label">
+											<input type="checkbox" name="demandcity" class="form-check-input" value="">{{ city }}
+										  </label>
+									</div>
+								{% endfor %}
+								</div>
+							</div>
+							 <div class="form-group row">
+								   <label for="disabledSelect"  class="col-sm-3 control-label">策略属性:</label>
+								   <div class="col-sm-10">
+										<select  class="form-control">
+											<option value="none" selected disabled hidden></option>
+											 <option>全局策略</option>
+											<option>业务策略</option>
+											<option>用户策略</option>
+											<option>测试策略</option>
+											<option>通信保障</option>
+										</select>
+								   </div>
+							</div>
+							<div class="form-group row">
+							  <label class="col-sm-2 control-label" for="ds_host">QCI:</label>
+							  <div class="col-sm-2">
+								 <input class="form-control" id="ds_host" type="text"/>
+							  </div>
+							  <label class="col-sm-2 control-label" for="ds_host">ARP:</label>
+							  <div class="col-sm-2">
+								 <input class="form-control" id="ds_host" type="text"/>
+							  </div>
+							</div>
+							<div class="form-group row">
+									<label class="col-sm-3 control-label" for="ds_host">厂家:</label>
+									<div class="form-son">
+									<div class="form-check  form-check-inline disabled">
+										  <label class="form-check-label">
+											<input type="checkbox" class="form-check-input" value="">爱立信
+										  </label>
+									</div>
+									<div class="form-check  form-check-inline disabled">
+									  <label class="form-check-label form-check-inline">
+										<input type="checkbox" class="form-check-input" value="">华为
+									  </label>
+									</div>
+									<div class="form-check  form-check-inline disabled">
+									  <label class="form-check-label form-check-inline">
+										<input type="checkbox" class="form-check-input" value="">中兴
+									  </label>
+									</div>
+									</div>
+							</div>
+							<div class="form-group row">
+									  <label class="col-sm-5 control-label" for="ds_host">爱立信优先级:</label>
+									  <div class="col-sm-4">
+										 <input class="form-control" id="ds_host" type="text"/>
+									  </div>
+							</div>
+							<div class="form-group row">
+										  <label class="col-sm-5 control-label" for="ds_host">华为优先级:</label>
+										  <div class="col-sm-4">
+											 <input class="form-control" id="ds_host" type="text"/>
+										  </div>
+							</div>
+							<div class="form-group row">
+										  <label class="col-sm-5 control-label" for="ds_host">中兴优先级:</label>
+										  <div class="col-sm-4">
+											 <input class="form-control" id="ds_host" type="text"/>
+										  </div>
+							</div>
+							<div class="form-group">
+									<label for="dtp_input2" class="col-md-2 control-label">下线时间</label>
+									<div class="input-group date form_date col-md-5" data-date="" data-date-format="" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+										<input class="form-control" size="10" type="text" value="" readonly>
+									   
+										<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+									</div>
+									<input type="hidden" id="dtp_input2" value="" /><br/>
+							</div>
+							 <div class="form-group row">
+										<label for="disabledSelect"  class="col-sm-3 control-label">其他:</label>
+										<textarea class="form-control" rows="5" id="comment"></textarea>
+							</div>
+						</div>
+						<div class="d-bottom">
+							<div class="form-group">
+							    <label for="comment" >短信口径:</label>
+							    <textarea class="form-control" rows="5" id="comment"   margin-left="15px"></textarea>
+							</div>
+						</div>
+					</div>
+					</form>
+                    {% endblock page_content %}
+
+
+
+                {% block navtitle %}
+                            <ul class="sidebar-menu">
+                                <div class="sidebar-block p-0">
+                                    <ul class="sidebar-menu">
+                                        <li class="sidebar-menu-item">
+                                            <a class="sidebar-menu-button"  href="{{ url_for('policy.policy_amount_more') }}">
+                                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                                                <span class="sidebar-menu-text">策略分析</span>
+                                                
+                                            </a>
+                                           
+                                        </li>
+                                        <li class="sidebar-menu-item  active open">
+										<a class="sidebar-menu-button" data-toggle="collapse" href="#docs_menu">
+                                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">folder</i>
+                                                <span class="sidebar-menu-text">策略标准库</span>
+                                                
+                                            </a>
+                                            <ul class="sidebar-submenu collapse show" id="docs_menu">
+                                                <li class="sidebar-menu-item active">
+                                                    <a class="sidebar-menu-button" href="#docs_menu">
+                                                        <span class="sidebar-menu-text">策略数</span>
+                                                    </a>
+                                                </li>
+                                                <li class="sidebar-menu-item">
+                                                    <a class="sidebar-menu-button" href="{{ url_for('policy.policy_stdlib_script') }}">
+                                                        <span class="sidebar-menu-text">策略脚本</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+										</li>
+                                        <li class="sidebar-menu-item">
+                                           <a class="sidebar-menu-button"  href="{{ url_for('policy.policy_visual_more') }}">
+                                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">edit</i>
+                                                <span class="sidebar-menu-text">可视化数据</span>
+                                               
+                                            </a>
+                                            
+                                        </li>
+                                    </ul>
+                     {% endblock navtitle %}       

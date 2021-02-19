@@ -1,0 +1,146 @@
+		{% extends "base.html" %}
+						{% block pagehead %}
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb mb-0">
+                                    <li class="breadcrumb-item"><a href="#">策略分析</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">报表分析</li>
+                                </ol>
+                            </nav>
+                            <h1 class="m-0">脚本冗余</h1>
+						 {% endblock pagehead %}
+
+
+						{% block page_content %}
+						<div class="search bar1">
+							<form method="post" action="/policy/policyreport_more/">
+							<div class="cage1"><p>选择日期:</p><select class="form-control" name="date">	
+							 <option value="none" selected disabled hidden>请选择选项</option>
+							{% for time in menu_time %}
+							<option>{{ time }}</option>
+							{% endfor %}
+							</select>
+							</div>
+			
+							<div class="cage2"><p>选择厂家:</p><select class="form-control" name="fact">
+							 <option value="none" selected disabled hidden>请选择选项</option>
+							<option>爱立信</option>
+							<option>华为</option>
+							<option>中兴</option>
+							</select>
+							</div>
+						
+							<div class="cage3"><p>选择PCRF:</p><select class="form-control" name="pcrf">
+							 <option value="none" selected disabled hidden>请选择选项</option>
+							{% for pcrf in menu_pcrf %}
+							<option>{{ pcrf }}</option>
+							{% endfor %}
+							</select>
+							</div>
+							<button type="submit" target="_blank" class="btn btn-outline-dark">搜索</button>
+						</form>
+						</div>
+						<div>	
+						<table class="table table-bordered">
+							<thead>
+							<td class="small">选择</td>
+							<td class="middle2">日期</td>
+							<td class="middle2">PCRF</td>
+							<td class="small">厂家</td>
+							<td class="big">策略ID</td>
+							<td class="big">现网冗余</td>
+							<td class="middle">管理操作</td>
+							</thead>
+							<tbody>
+							<tr>
+							{% for obj in object %}
+							<td class="small"><input type="checkbox" value="0" name="chk"></td>
+							<td class="middle2">{{ obj.time }}</td>
+							<td class="middle2">{{ obj.pcrf }}</td>
+							<td class="small">{{ obj.fact }}</td>
+							<td class="big">{{ obj.policy_id }}</td>
+							<td class="big">{{ obj.con_more }}</td>
+							<td class="middle"><button type="submit" target="_blank" class="btn btn-outline-dark" href="">详情<button type="submit" target="_blank" class="btn btn-outline-dark" href="">删除</button></td>
+							</tr>
+							{% endfor %}
+							</tbody>
+							<tfoot>
+                 <tr><td><ul class="pagination">
+    <li><a href="#">&laquo;</a></li>
+    <li class="active"><a href="#">1</a></li>
+    <li class="disabled"><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">&raquo;</a></li>
+</ul></td>
+                     <td colspan="7" align="center">
+                         <button type="submit" target="_blank" class="btn btn-outline-dark" onclick="qx()">全选</button>&nbsp;&nbsp;&nbsp;
+                         <button type="submit" target="_blank" class="btn btn-outline-dark" onclick="fx()">反选</button>&nbsp;&nbsp;&nbsp;
+                         <button type="submit" target="_blank" class="btn btn-outline-dark" onclick="qbx()">全不选</button>
+                     </td>
+                 </tr>
+                 
+                 
+             </tfoot>
+						</table>	
+						</div>
+                   
+						{% endblock page_content %}
+
+						{% block navtitle %}
+                                    <ul class="sidebar-menu">
+                                       <li class="sidebar-menu-item  active open">
+                                            <a class="sidebar-menu-button" data-toggle="collapse" href="#docs_menu">
+                                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
+                                                <span class="sidebar-menu-text">策略分析</span>
+                                                
+                                            </a>
+                                            <ul class="sidebar-submenu collapse show" id="docs_menu">
+                                                <li class="sidebar-menu-item active">
+                                                    <a class="sidebar-menu-button" href="{{ url_for('policy.policy_amount_more') }}">
+                                                        <span class="sidebar-menu-text">策略数冗余</span>
+                                                    </a>
+                                                </li>
+                                                <li class="sidebar-menu-item">
+                                                    <a class="sidebar-menu-button" href="{{url_for('policy.policy_amount_less')}}">
+                                                        <span class="sidebar-menu-text">策略数缺失</span>
+                                                    </a>
+                                                </li>
+												<li class="sidebar-menu-item">
+                                                    <a class="sidebar-menu-button" href="#docs_menu">
+                                                        <span class="sidebar-menu-text">策略脚本冗余</span>
+                                                    </a>
+                                                </li>
+												 <li class="sidebar-menu-item">
+                                                    <a class="sidebar-menu-button" href="{{ url_for('policy.policy_report_less') }}">
+                                                        <span class="sidebar-menu-text">策略脚本缺失</span>
+                                                    </a>
+                                                </li>
+												 <li class="sidebar-menu-item">
+                                                    <a class="sidebar-menu-button" href="{{ url_for('policy.policy_report_error') }}">
+                                                        <span class="sidebar-menu-text">策略参数差异</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li> 
+										
+										
+                                        <li class="sidebar-menu-item">
+										<a class="sidebar-menu-button"  href="{{ url_for('policy.policy_stdlib') }}">
+                                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">folder</i>
+                                                <span class="sidebar-menu-text">策略标准库</span>
+                                                
+                                            </a>
+                                            
+										</li>
+                                        <li class="sidebar-menu-item">
+                                           <a class="sidebar-menu-button"  href="{{ url_for('policy.policy_visual_more') }}">
+                                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">edit</i>
+                                                <span class="sidebar-menu-text">可视化数据</span>
+                                                
+                                            </a>
+                                            
+                                            </ul>
+                                        </li>
+                                    </ul>
+                       {% endblock navtitle %}
